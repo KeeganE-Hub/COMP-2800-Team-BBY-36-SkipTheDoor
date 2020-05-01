@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<<<<<<< HEAD
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Skip The Door</title>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyC-n2aDGPBRbl3LAtsW9Ih-rPSe9O8wuXE",
+      authDomain: "group36-a3695.firebaseapp.com",
+      databaseURL: "https://group36-a3695.firebaseio.com",
+      projectId: "group36-a3695",
+      storageBucket: "group36-a3695.appspot.com",
+      messagingSenderId: "442042715299",
+      appId: "1:442042715299:web:bcc01e94cb94902f088316"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #1C2331 !important;
+      }
+    }
+
+    #images {
+      width: 330px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="#" target="_blank">
+        <strong>Skip The Door</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_blank">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./login.html">Sign-up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_blank">Settings</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+  <!--Carousel Wrapper-->
+  <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+
+      <!--First slide-->
+      <div class="carousel-item active">
+        <div class="view"
+          style="background-image: url('./img/Vegetables.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="text-center white-text mx-5 wow fadeIn">
+              <h1 class="mb-4">
+                <strong>Skip The Door</strong>
+              </h1>
+
+              <p class="mb-4 d-none d-md-block">
+                <strong>Shop Now!</strong>
+              </p>
+
+              <form class="form-inline mr-auto">
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+              </form>
+            </div>
+            <!-- Content -->
+
+          </div>
+          <!-- Mask & flexbox options-->
+
+        </div>
+      </div>
+      <!--/First slide-->
+
+      Second slide
+      <div class="carousel-item">
+        <div class="view"
+          style="background-image: url('./img/ShoppingLady.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="text-center white-text mx-5 wow fadeIn">
+              <h1 class="mb-4">
+                <strong>Skip The Door</strong>
+              </h1>
+
+              <p class="mb-4 d-none d-md-block">
+                <strong>Shop Now!</strong>
+              </p>
+
+              <form class="form-inline mr-auto">
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+              </form>
+            </div>
+            <!-- Content -->
+
+          </div>
+          <!-- Mask & flexbox options-->
+
+        </div>
+      </div>
+      <!--/Second slide-->
+
+      <!--Third slide-->
+      <div class="carousel-item">
+        <div class="view"
+          style="background-image: url('./img/OnlineShopping.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="text-center white-text mx-5 wow fadeIn">
+              <h1 class="mb-4">
+                <strong>Skip The Door</strong>
+              </h1>
+
+              <p class="mb-4 d-none d-md-block">
+                <strong>Shop Now!</strong>
+              </p>
+
+              <form class="form-inline mr-auto">
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+              </form>
+            </div>
+            <!-- Content -->
+
+            <!-- <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/"
+                class="btn btn-outline-white btn-lg">Start free tutorial
+                <i class="fas fa-graduation-cap ml-2"></i> -->
+
+          </div>
+          <!-- Mask & flexbox options-->
+
+        </div>
+      </div>
+      <!--/Third slide-->
+
+    </div>
+    <!--/.Slides-->
+
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+
+  </div>
+  <!--/.Carousel Wrapper-->
+
+  <!--Main layout-->
+  <main>
+    <div class="container">
+
+      <!--Section: Main info-->
+      <section class="mt-5 wow fadeIn">
+
+        <!--Grid row-->
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+
+            <img src="./img/Smile.jpg" class="img-fluid z-depth-1-half" alt="" id="images">
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+
+            <!-- Main heading -->
+            <h3 class="h3 mb-3">Shop With Ease</h3>
+            <p>With over <strong>1000</strong> stores to choose from!</p>
+            <p>View their products instantly!</p>
+            <!-- Main heading -->
+
+            <hr>
+
+            <p>
+              <strong>200+</strong> Grocery Stores,
+              <strong>150+</strong> Electronics Stores,
+              <strong>100+</strong> Hardware Stores and many more.
+            </p>
+
+            <!-- CTA -->
+            <a target="_blank" href="#"
+              class="btn btn-indigo btn-md">Explore
+            </a>
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--Section: Main info-->
+
+      <hr>
+
+      <!--Section: Main info-->
+      <section class="mt-5 wow fadeIn">
+
+        <!--Grid row-->
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+            <img src="./img/Friendship.jpg" class="img-fluid z-depth-1-half" alt="" id="images">
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+
+            <!-- Main heading -->
+            <h3 class="h3 mb-3">Save Time</h3>
+            <p>Everday life keeping you busy from buying your favorite products?</p>
+            <!-- Main heading -->
+
+            <hr>
+
+            <p>
+              Get them at the touch of your fingertips.
+            </p>
+
+            <!-- CTA -->
+            <a target="_blank" href="#"
+              class="btn btn-indigo btn-md">Shop Now
+            </a>
+
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--Section: Main info-->
+
+      <hr>
+
+      <!--Section: Main info-->
+      <section class="mt-5 wow fadeIn">
+
+        <!--Grid row-->
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+            <img src="./img/StayConnected.jpg" class="img-fluid z-depth-1-half" alt="" id="images">
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+
+            <!-- Main heading -->
+            <h3 class="h3 mb-3">Stay Connected</h3>
+            <p>Get notifications on the best deals!</p>
+            <!-- Main heading -->
+
+            <hr>
+
+            <p>
+              Sign-up today!
+            </p>
+
+            <!-- CTA -->
+            <a target="_blank" href="./login.html"
+              class="btn btn-indigo btn-md">Sign-up
+            </a>
+
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--Section: Main info-->
+
+      <hr class="my-5">
+
+      <!--Section: Main features & Quick Start-->
+      <section>
+
+        <h3 class="h3 text-center mb-5">Showcase Products from Your Store</h3>
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12 px-4">
+
+            <!--First row-->
+            <div class="row">
+              <div class="col-1 mr-3">
+                <!-- <i class="fas fa-code fa-2x indigo-text"></i> -->
+                <i class="fas fa-check-circle fa-2x indigo-text"></i>
+              </div>
+              <div class="col-10">
+                <h5 class="feature-title">Register For Free</h5>
+                <p class="grey-text">Skip The Door is a free to use online shopping site for
+                  Vendors and Customers.
+                </p>
+              </div>
+            </div>
+            <!--/First row-->
+
+            <div style="height:30px"></div>
+
+            <!--Second row-->
+            <div class="row">
+              <div class="col-1 mr-3">
+                <i class="fas fa-book fa-2x indigo-text"></i>
+              </div>
+              <div class="col-10">
+                <h5 class="feature-title">Seemless Integration</h5>
+                <p class="grey-text">Familiar with Excel?
+                  Use it to synchronize your inventory catalog on to our site.
+                </p>
+              </div>
+            </div>
+            <!--/Second row-->
+
+            <div style="height:30px"></div>
+
+            <!--Third row-->
+            <div class="row">
+              <div class="col-1 mr-3">
+                <i class="fas fa-tools fa-2x indigo-text"></i>
+              </div>
+              <div class="col-10">
+                <h5 class="feature-title">Ease of Maintenace</h5>
+                <p class="grey-text">Need to add new products?
+                  Update your Excel catalog and see your new products displayed
+                  instantly.
+                </p>
+              </div>
+            </div>
+            <!--/Third row-->
+          </div>
+          <!--/Grid column-->
+        </div>
+        <!--/Grid row-->
+
+      </section>
+      <!--Section: Main features & Quick Start-->
+
+      <hr class="my-5">
+
+      <!--Section: Not enough-->
+      <section>
+
+        <h2 class="my-5 h3 text-center">About Us</h2>
+
+        <!--First row-->
+        <div class="row features-small mb-5 mt-3 wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-xl-3 col-lg-6">
+            <!--Grid row-->
+            <div class="row">
+              <div class="col-2">
+                <i class="fab fa-youtube fa-2x red-text"></i>
+              </div>
+              <div class="col-10 mb-2 pl-3">
+                <h5 class="feature-title font-bold mb-1">Learn more about us on Youtube</h5>
+                <p class="grey-text">Skip The Door, Sell with Ease, Shop with Ease!
+                </p>
+              </div>
+            </div>
+            <!--/Grid row-->
+          </div>
+          <!--/Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/kuwIaFA6AdA"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+          <!--/Grid column-->
+
+        </div>
+        <!--/First row-->
+
+      </section>
+      <!--Section: Not enough-->
+
+      <hr class="mb-5">
+
+      <!--Section: More-->
+      <section>
+
+        <h2 class="my-5 h3 text-center">Our Team</h2>
+
+        <!--First row-->
+        <div class="row features-small mt-5 wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-xl-3 col-lg-3">
+            <!--Grid row-->
+            <div class="row">
+
+              <div class="col-12 mb-2">
+                <!-- Card Regular -->
+                <div class="card card-cascade">
+
+                  <!-- Card image -->
+                  <div class="view view-cascade overlay">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg"
+                      alt="Card image cap">
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+
+                  <!-- Card content -->
+                  <div class="card-body card-body-cascade text-center">
+
+                    <!-- Title -->
+                    <h4 class="card-title"><strong>Troy Lee</strong></h4>
+                    <!-- Subtitle -->
+                    <h6 class="font-weight-bold indigo-text py-2">Senior Web Developer</h6>
+                    <!-- Text -->
+                    <p class="card-text">“It's not what you achieve, it's what you overcome. That's what defines your career."
+                    </p>
+
+                    <!-- Facebook -->
+                    <a type="button" class="btn-floating btn-small btn-fb"><i class="fab fa-facebook-f"></i></a>
+                    <!-- Twitter -->
+                    <a type="button" class="btn-floating btn-small btn-tw"><i class="fab fa-twitter"></i></a>
+                    <!-- Google + -->
+                    <a type="button" class="btn-floating btn-small btn-dribbble"><i class="fab fa-github-alt"></i></a>
+
+                  </div>
+
+                </div>
+                <!-- Card Regular -->
+              </div>
+            </div>
+            <!--/Grid row-->
+
+
+          </div>
+          <!--/Grid column-->
+
+          <!--Grid column-->
+          <div class="col-xl-3 col-lg-3">
+            <!--Grid row-->
+            <div class="row">
+
+              <div class="col-12 mb-2">
+                <!-- Card Regular -->
+                <div class="card card-cascade">
+
+                  <!-- Card image -->
+                  <div class="view view-cascade overlay">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg"
+                      alt="Card image cap">
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+
+                  <!-- Card content -->
+                  <div class="card-body card-body-cascade text-center">
+
+                    <!-- Title -->
+                    <h4 class="card-title"><strong>Charlie Wei</strong></h4>
+                    <!-- Subtitle -->
+                    <h6 class="font-weight-bold indigo-text py-2">IT Manager</h6>
+                    <!-- Text -->
+                    <p class="card-text">"The best way to predict the future is to create it."
+                    </p>
+
+                    <!-- Facebook -->
+                    <a type="button" class="btn-floating btn-small btn-fb"><i class="fab fa-facebook-f"></i></a>
+                    <!-- Twitter -->
+                    <a type="button" class="btn-floating btn-small btn-tw"><i class="fab fa-twitter"></i></a>
+                    <!-- Google + -->
+                    <a type="button" class="btn-floating btn-small btn-dribbble"><i class="fab fa-github-alt"></i></a>
+
+                  </div>
+
+                </div>
+                <!-- Card Regular -->
+              </div>
+            </div>
+            <!--/Grid row-->
+
+
+          </div>
+          <!--/Grid column-->
+
+          <!--Grid column-->
+          <div class="col-xl-3 col-lg-3">
+            <!--Grid row-->
+            <div class="row">
+
+              <div class="col-12 mb-2">
+                <!-- Card Regular -->
+                <div class="card card-cascade">
+
+                  <!-- Card image -->
+                  <div class="view view-cascade overlay">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg"
+                      alt="Card image cap">
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+
+                  <!-- Card content -->
+                  <div class="card-body card-body-cascade text-center">
+
+                    <!-- Title -->
+                    <h4 class="card-title"><strong>Keegan Elgin</strong></h4>
+                    <!-- Subtitle -->
+                    <h6 class="font-weight-bold indigo-text py-2">Senior Software Developer</h6>
+                    <!-- Text -->
+                    <p class="card-text">"Dreams are extremely important. You can't do it unless you imagine it."
+                    </p>
+
+                    <!-- Facebook -->
+                    <a type="button" class="btn-floating btn-small btn-fb"><i class="fab fa-facebook-f"></i></a>
+                    <!-- Twitter -->
+                    <a type="button" class="btn-floating btn-small btn-tw"><i class="fab fa-twitter"></i></a>
+                    <!-- Google + -->
+                    <a type="button" class="btn-floating btn-small btn-dribbble"><i class="fab fa-github-alt"></i></a>
+
+                  </div>
+
+                </div>
+                <!-- Card Regular -->
+              </div>
+            </div>
+            <!--/Grid row-->
+
+
+          </div>
+          <!--/Grid column-->
+
+          <!--Grid column-->
+          <div class="col-xl-3 col-lg-3">
+            <!--Grid row-->
+            <div class="row">
+
+              <div class="col-12 mb-2">
+                <!-- Card Regular -->
+                <div class="card card-cascade">
+
+                  <!-- Card image -->
+                  <div class="view view-cascade overlay">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg"
+                      alt="Card image cap">
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+
+                  <!-- Card content -->
+                  <div class="card-body card-body-cascade text-center">
+
+                    <!-- Title -->
+                    <h4 class="card-title"><strong>William Kwok</strong></h4>
+                    <!-- Subtitle -->
+                    <h6 class="font-weight-bold indigo-text py-2">Senior Computer Systems Analyst</h6>
+                    <!-- Text -->
+                    <p class="card-text">
+                      "All you need in this life is ignorance and confidence, and then success is sure."
+                    </p>
+
+                    <!-- Facebook -->
+                    <a type="button" class="btn-floating btn-small btn-fb"><i class="fab fa-facebook-f"></i></a>
+                    <!-- Twitter -->
+                    <a type="button" class="btn-floating btn-small btn-tw"><i class="fab fa-twitter"></i></a>
+                    <!-- Google + -->
+                    <a type="button" class="btn-floating btn-small btn-dribbble"><i class="fab fa-github-alt"></i></a>
+
+                  </div>
+
+                </div>
+                <!-- Card Regular -->
+              </div>
+            </div>
+            <!--/Grid row-->
+
+
+          </div>
+          <!--/Grid column-->
+
+        </div>
+        <!--/First row-->
+
+      </section>
+      <!--Section: More-->
+
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+      <a class="btn btn-outline-white" href="./login.html"
+        target="_blank" role="button">Sign-up
+        <i class="fas fa-user ml-2"></i>
+      </a>
+      <a class="btn btn-outline-white" href="#" target="_blank"
+        role="button">Shop Now
+        <i class="fas fa-shopping-cart ml-2"></i>
+      </a>
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+      <a href="#" target="_blank">
+        <i class="fab fa-facebook-f mr-3"></i>
+      </a>
+
+      <a href="#" target="_blank">
+        <i class="fab fa-twitter mr-3"></i>
+      </a>
+
+      <a href="#" target="_blank">
+        <i class="fab fa-youtube mr-3"></i>
+      </a>
+
+      <a href="#" target="_blank">
+        <i class="fab fa-google-plus-g mr-3"></i>
+      </a>
+
+      <a href="#" target="_blank">
+        <i class="fab fa-github mr-3"></i>
+      </a>
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2020 Copyright: (Skip The Door)
+      <a href="#" target="_blank"> https://group36-a3695.web.app </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+  </script>
+
+</body>
+
+
+</html>
+=======
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.14.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.14.2/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.14.2/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.14.2/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message">
+      <h2>Welcome</h2>
+      <h1>Firebase Hosting Setup Complete</h1>
+      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
+      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    </div>
+    <p id="load">Firebase SDK Loading&hellip;</p>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
+</html>
+>>>>>>> william_kwok_feature
