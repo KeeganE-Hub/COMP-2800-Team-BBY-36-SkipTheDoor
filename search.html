@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="searcher">
+    <button type="button" id="submit">Search</button>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-firestore.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-analytics.js"></script>
+<!-- <script src="scripts/firebase_api.js"></script> -->
+
+<script>
+
+      // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC-n2aDGPBRbl3LAtsW9Ih-rPSe9O8wuXE",
+    authDomain: "group36-a3695.firebaseapp.com",
+    databaseURL: "https://group36-a3695.firebaseio.com",
+    projectId: "group36-a3695",
+    storageBucket: "group36-a3695.appspot.com",
+    messagingSenderId: "442042715299",
+    appId: "1:442042715299:web:bcc01e94cb94902f088316"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+
+
+    // function search() {
+    //     var parameters = {orderBy:"Description", equalTo: searcher};
+    //     var data = db.getData("", parameters);
+    //     for (var i in data) {
+    //         console.log(data[i].name)
+    //     }
+    // }
+
+
+    function search() {
+
+        db.collection("users").doc("charliewei").collection("products").where("Description", "==", "Fruit").get().then(function(doc) {
+            if (doc.exists) {
+      console.log("Document data:", doc.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+        });
+
+
+
+        // var firebaseUrl = "https://script-examples.firebaseio.com/";
+        // var base = FirebaseApp.getDatabaseByUrl(firebaseUrl);
+        // var queryParameters = {orderBy:"Description", equalTo: "Fruit"};
+        // var data = base.getData("", queryParameters);
+        // for(var i in data) {
+        //     console.log(data[i].Product);
+        // }
+  }
+
+    document.getElementById("submit").onclick = search;
+</script>
+
+</body>
+</html>
