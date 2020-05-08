@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Skip The Door</title>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyC-n2aDGPBRbl3LAtsW9Ih-rPSe9O8wuXE",
+      authDomain: "group36-a3695.firebaseapp.com",
+      databaseURL: "https://group36-a3695.firebaseio.com",
+      projectId: "group36-a3695",
+      storageBucket: "group36-a3695.appspot.com",
+      messagingSenderId: "442042715299",
+      appId: "1:442042715299:web:bcc01e94cb94902f088316"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <!-- Material Design Components -->
+  <link rel="stylesheet"
+  href="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.min.css" type="text/css">
+  <script src="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.js"></script>
+
+  <!-- App Styling -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box;}
+    
+    input[type=text], select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+    
+    input[type=submit] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    </style>
+
+</head>
+
+<body>
+  
+  <!-- Navbar -->
+
+  
+
+  <!--Main layout-->
+  <main>
+    <div class="container">
+      <div id="postForm">
+        <h1 id="postFormTitle">Post Item</h1>
+        
+        <form id="newPost" onsubmit='return onSubmit(this)'>
+          <div id="postFormInnerWrapper">
+            <div id="productNameWrapper">
+              <label>Product Name:</label>
+              <input type="text" name="name" id="productName" required="required" placeholder="Choose a descriptive name for your product.">
+            </div>
+    
+            
+            <div>
+              <label>Product Description:</label>
+              <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your product is." id="productDescription"
+                required></textarea>
+            </div>
+          </div>
+    
+          <div id="uploadWrapper">
+            <img src="images/defaultImage.png" id="prv" width="400px">
+          </div>
+          <div>
+            <progress value="0" id="uploader" max="100">0%</progress>
+            <input type="file" value="upload" id="fileButton" accept="image/*"/>
+            <br>
+            <br>
+          </div>
+    
+    
+          <div>
+            <button type="submit" id="formSubmit" name="button">Submit</button>
+          </div>
+          
+    
+        </form>
+      </div></div>
+
+  </main>
+  <!--Main layout-->
+
+
+  
+
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="/__/firebase/7.14.2/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-firestore.js"></script>
+  <script src="/__/firebase/7.14.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+
+
+
+
+<script src="//unpkg.com/navigo@6"></script>
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC-n2aDGPBRbl3LAtsW9Ih-rPSe9O8wuXE",
+    authDomain: "group36-a3695.firebaseapp.com",
+    databaseURL: "https://group36-a3695.firebaseio.com",
+    projectId: "group36-a3695",
+    storageBucket: "group36-a3695.appspot.com",
+    messagingSenderId: "442042715299",
+    appId: "1:442042715299:web:bcc01e94cb94902f088316"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  const db = firebase.firestore();
+    const firestore = firebase.firestore();
+    const settings = {/* your settings... */ timestampsInSnapshots: true };
+    firestore.settings(settings);
+
+//Store the uploadedImage image URL 
+var uploadedImage = "images/defaultImage.png";
+
+  // get elements
+  var uploader = document.getElementById('uploader');
+  var fileButton = document.getElementById('fileButton');
+  
+
+  // listen for file selection
+  fileButton.addEventListener('change', function(e){
+    var file = e.target.files[0];
+  // select unique name for everytime when image uploaded 
+  // Date.now() is function that give current timestamp 
+  var name = "123" + Date.now();
+
+// make ref to your firebase storage and select images folder 
+var storageRef = firebase.storage().ref('/images/' + name);
+//upload file
+var task = storageRef.put(file);
+
+  // all working for progress bar that in html 
+  // to indicate image uploading... report 
+  task.on('state_changed', function (snapshot) {
+    var progress =
+      (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    var uploader = document.getElementById('uploader');
+    uploader.value = progress;
+    switch (snapshot.state) {
+      case firebase.storage.TaskState.PAUSED:
+        console.log('Upload is paused');
+        break;
+      case firebase.storage.TaskState.RUNNING:
+        console.log('Upload is running');
+        break;
+    }
+  }, function (error) {
+    console.log(error);
+  }, function () {
+
+    // get the uploaded image url back 
+    task.snapshot.ref.getDownloadURL().then(
+      function (downloadURL) {
+
+        // You get your url from here 
+        console.log('File available at', downloadURL);
+        uploadedImage = downloadURL;
+        // print the image url 
+        console.log(downloadURL);
+        var img= document.getElementById('prv');
+    img.src = uploadedImage;
+
+
+
+
+      });
+  });
+
+  });
+
+  storageRef.child(''+downloadURL).getDownloadURL().then(function(download){
+
+  });
+
+  
+
+
+  function onSubmit( form ){
+  var data = JSON.stringify( $(form).serializeArray() ); //  <-----------
+  var productName = document.getElementById('productName').value;
+  var productDescription = document.getElementById('productDescription').value;
+  db.collection("users/").doc("William Kwok").collection("Post").add({
+            name: productName,
+            description: productDescription,
+            image: uploadedImage,
+  });
+  console.log( data );
+  return false; //don't submit
+}
+
+
+
+
+  
+  firebase.analytics();
+</script>
+
+</body>
+</html> 
+
+
+  
+
+
+
+
+
