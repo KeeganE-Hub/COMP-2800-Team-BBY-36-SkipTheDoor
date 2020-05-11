@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Skip The Door</title>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC-n2aDGPBRbl3LAtsW9Ih-rPSe9O8wuXE",
+            authDomain: "group36-a3695.firebaseapp.com",
+            databaseURL: "https://group36-a3695.firebaseio.com",
+            projectId: "group36-a3695",
+            storageBucket: "group36-a3695.appspot.com",
+            messagingSenderId: "442042715299",
+            appId: "1:442042715299:web:bcc01e94cb94902f088316"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Star rating -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.min.css" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .carousel {
+            height: 60vh;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        @media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #1C2331 !important;
+            }
+        }
+
+        #images {
+            width: 330px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand" href="#" target="_blank">
+                <strong>Skip The Door</strong>
+            </a>
+
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./login.html">Sign-up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">Settings</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+
+    <!--Main layout-->
+    <main>
+        <div class="container">
+
+            <!--Section: Main features & Quick Start-->
+            <section class="pt-5">
+
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+
+                    <!--Grid column-->
+                    <div class="col-12 px-4">
+
+                        <!--First row-->
+                        <div class="row">
+
+                            <div class="col-12 mx-auto pt-3">
+
+                                <!--Carousel Wrapper-->
+                                <div id="carousel-example-1z" class="carousel slide carousel-fade z-depth-1-half h-auto"
+                                    data-ride="carousel">
+                                    <!--Indicators-->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+                                        <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+                                    </ol>
+                                    <!--/.Indicators-->
+                                    <!--Slides-->
+                                    <div class="carousel-inner" role="listbox">
+                                        <!--First slide-->
+                                        <div class="carousel-item active">
+                                            <img class="d-block w-100"
+                                                src="https://images-na.ssl-images-amazon.com/images/I/71GIw4EDt3L._AC_SL1500_.jpg"
+                                                alt="First slide">
+                                        </div>
+                                        <!--/First slide-->
+                                        <!--Second slide-->
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100"
+                                                src="https://images-na.ssl-images-amazon.com/images/I/91BIGOeF3rL._AC_SL1500_.jpg"
+                                                alt="Second slide">
+                                        </div>
+                                        <!--/Second slide-->
+                                        <!--Third slide-->
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100"
+                                                src="https://images-na.ssl-images-amazon.com/images/I/81srVHt0KFL._AC_SL1500_.jpg"
+                                                alt="Third slide">
+                                        </div>
+                                        <!--/Third slide-->
+                                    </div>
+                                    <!--/.Slides-->
+                                    <!--Controls-->
+                                    <a class="carousel-control-prev" href="#carousel-example-1z" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carousel-example-1z" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                    <!--/.Controls-->
+                                </div>
+                                <!--/.Carousel Wrapper-->
+
+
+
+                            </div>
+                        </div>
+                        <!--/First row-->
+
+                        <!--Divider-->
+                        <div style="height:30px"></div>
+
+                        <!--Second row-->
+                        <div class="row">
+
+                            <div class="row w-100 mx-auto">
+                                <h1 class="h1 col-12 font-weight-bold">Kraft Peanut Butter</h1>
+                            </div>
+
+                            <div class="row w-100 mx-auto">
+                                <div class="col text-left">
+                                    <h5 class="h5 ">Safeway Burnaby</h5>
+                                    <h6 class="h6 ">2 lb container</h6>
+                                    <p class="mb-0"><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span></p>
+
+                                </div>
+
+                                <div class="col-4 text-right mt-auto">
+                                    <h3 class="h3">$14.99</h3>
+                                    <h7 class="h7">In stock: 8</h7>
+
+                                </div>
+                            </div>
+
+                            <div class="row w-100 mx-auto">
+                                <button type="button" class="btn btn-unique col-11 mx-auto mt-4">Add to cart</button>
+                            </div>
+
+                        </div>
+                        <!--/Second row-->
+
+                        <div style="height:30px"></div>
+
+                        <!--Third row-->
+                        <div class="row">
+
+                            <div class="col-12 mx-auto">
+                                <h4 class="mb-3 font-weight-bold">Description</h4>
+                                <p>Kraft Smooth Peanut Butter is a family favourite and a Canadian classic. With its
+                                    signature delicious, nutty taste and irresistable, creamy texture, Kraft Smooth
+                                    Peanut Butter is made with high quality dry-roasted peanuts to bring out the best
+                                    flavour and aroma. Try Kraft Peanut Butter on your toast, sandwiches and fruits or
+                                    vegetables. This smooth peanut butter is also great for using in sauces, marinades,
+                                    smoothies, cookies and other pastries. Or, you can eat this tasty peanut butter by
+                                    the spoonful as a quick snack! Kraft Peanut Butter is Canada's #1 Peanut Butter.
+                                    Make Together, Stick Together.</p>
+
+                                <h4 class="mt-5 mb-3 font-weight-bold">Ingredients</h4>
+                                <p>SELECT ROASTED PEANUTS, SOYBEAN OIL, CORN MALTODEXTRIN, SUGAR, HYDROGENATED VEGETABLE
+                                    OIL (COTTON SEED AND RAPESEED OIL), SALT, MONO- AND DIGLYCERIDES.</p>
+                                <p>ALLERGENS: PEANUT</p>
+
+                            </div>
+                        </div>
+                        <!--/Third row-->
+                    </div>
+                    <!--/Grid column-->
+                </div>
+                <!--/Grid row-->
+
+                <hr class="my-5">
+
+                <!--Comments-->
+                <div class="row wow fadeIn">
+
+
+
+                    <div class="col-12 px-4 mx-auto pb-5">
+
+                        <h4 class="mb-4 font-weight-bold">Comments</h4>
+                        <div class="media pb-3">
+
+                            <div class="media-body">
+                                <h5 class="mt-0">Anna Smith <span class="fa fa-star checked ml-3"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span></h5>
+
+                                <p>The peanut butter smelled a little funny the first time I opened it. When I started
+                                    spreading it on my bread, it was not smooth and instead was very chunky. The taste
+                                    was not great either, not salty enough and did not have much "peanutty" taste. Would
+                                    not buy again unless it's the last choice I have.</p>
+
+                            </div>
+                        </div>
+                        <div class="media pb-3">
+
+                            <div class="media-body">
+                                <h5 class="mt-0">Caroline Horwitz <span class="fa fa-star checked ml-3"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span></h5>
+                                <p>Still a very tasty peanut butter although I did find it not as thick as before. I'm
+                                    sure this is another tactic by food manufacturers to reduce cost by giving you a
+                                    little less. Looks like they've added extra oil to compensate for the lack of
+                                    peanutty goodness.</p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <!--Textarea with icon prefix-->
+                        <div class="md-form col-10 mx-auto mt-5">
+                            <i class="fas fa-pencil-alt prefix"></i>
+                            <textarea id="form10" class="md-textarea form-control" rows="3"></textarea>
+                            <label for="form10" class="pl-3">Write a Comment</label>
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn btn-unique btn-rounded mx-auto">Submit</button>
+
+
+                </div>
+                <!--/Comments-->
+
+            </section>
+
+
+        </div>
+        <!--/Grid column-->
+
+
+        <!--Section: More-->
+
+
+    </main>
+    <!--Main layout-->
+
+    <!--Footer-->
+    <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+        <!--Call to action-->
+        <div class="pt-4">
+            <a class="btn btn-outline-white" href="./login.html" target="_blank" role="button">Sign-up
+                <i class="fas fa-user ml-2"></i>
+            </a>
+            <a class="btn btn-outline-white" href="#" target="_blank" role="button">Shop Now
+                <i class="fas fa-shopping-cart ml-2"></i>
+            </a>
+        </div>
+        <!--/.Call to action-->
+
+        <hr class="my-4">
+
+        <!-- Social icons -->
+        <div class="pb-4">
+            <a href="#" target="_blank">
+                <i class="fab fa-facebook-f mr-3"></i>
+            </a>
+
+            <a href="#" target="_blank">
+                <i class="fab fa-twitter mr-3"></i>
+            </a>
+
+            <a href="#" target="_blank">
+                <i class="fab fa-youtube mr-3"></i>
+            </a>
+
+            <a href="#" target="_blank">
+                <i class="fab fa-google-plus-g mr-3"></i>
+            </a>
+
+            <a href="#" target="_blank">
+                <i class="fab fa-github mr-3"></i>
+            </a>
+        </div>
+        <!-- Social icons -->
+
+        <!--Copyright-->
+        <div class="footer-copyright py-3">
+            © 2020 Copyright: (Skip The Door)
+            <a href="#" target="_blank"> https://group36-a3695.web.app </a>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+    </script>
+
+</body>
+
+
+</html>
