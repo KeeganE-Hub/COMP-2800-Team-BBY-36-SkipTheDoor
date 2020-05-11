@@ -1,0 +1,183 @@
+<!doctype html>
+<!-- 
+  Copyright 2015 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Learn how to use the Firebase platform on the Web">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKIP</title>
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  <link rel="icon" href="images/favicon.ico">
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Skip">
+  <meta name="theme-color" content="#4285F4">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Skip">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#4285F4">
+
+  <!-- Tile icon for Win8 -->
+  <!-- <meta name="msapplication-TileColor" content="#3372DF">
+  <meta name="msapplication-navbutton-color" content="#303F9F"> -->
+
+  <!-- Material Design Components -->
+  <link rel="stylesheet"
+  href="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.min.css" type="text/css">
+  <script src="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.js"></script>
+
+  <!-- App Styling -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+  <link rel="stylesheet" href="/styles/main.css" type="text/css">
+
+
+
+
+<style type="text/css">
+body{
+  margin-left: 40%;
+  margin-top: 10%;
+}
+</style>
+
+
+
+</head>
+<body>
+  
+  <div id="postForm">
+    <h1 id="postFormTitle">Post Item</h1>
+    <div class="alert">Your post has been submitted</div>
+    <form id="newPost">
+      <div id="postFormInnerWrapper">
+        <div id="productNameWrapper">
+          <label>Product Name:</label>
+          <input type="text" name="name" id="productName" required="required" placeholder="Choose a descriptive name for your product.">
+        </div>
+
+        
+        <div>
+          <label>Product Description:</label>
+          <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your product is." id="productDescription"
+            required></textarea>
+        </div>
+      </div>
+
+      <div id="uploadWrapper">
+        <img src="images/defaultImage.png" id="prv">
+      </div>
+      <div>
+        <progress value="0" id="uploader" max="100">0%</progress>
+        <input type="file" value="upload" id="fileButton" accept="image/*"/>
+        <br>
+        <br>
+      </div>
+
+
+      <div>
+        <button type="submit" id="formSubmit" name="button">Submit</button>
+      </div>
+
+    </form>
+  </div>
+
+
+
+
+
+
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="/__/firebase/7.14.2/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="/__/firebase/7.14.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.14.2/firebase-firestore.js"></script>
+  <script src="/__/firebase/7.14.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+
+
+
+
+<script src="//unpkg.com/navigo@6"></script>
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC-n2aDGPBRbl3LAtsW9Ih-rPSe9O8wuXE",
+    authDomain: "group36-a3695.firebaseapp.com",
+    databaseURL: "https://group36-a3695.firebaseio.com",
+    projectId: "group36-a3695",
+    storageBucket: "group36-a3695.appspot.com",
+    messagingSenderId: "442042715299",
+    appId: "1:442042715299:web:bcc01e94cb94902f088316"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+
+  // get elements
+  var uploader = document.getElementById('uploader');
+  var fileButton = document.getElementById('fileButton');
+
+  // listen for file selection
+  fileButton.addEventListener('change', function(e){
+
+    var file = e.target.files[0];
+  // Date.now() is function that give current timestamp 
+  var name = "123" + Date.now();
+
+  // make ref to your firebase storage and select images folder 
+  var storageRef = firebase.storage().ref('/images/' + name);
+    //upload file
+    var task = storageRef.put(file);
+
+    //update bar
+    task.on('stage_changed',
+    function progress(snapshot){
+      var percentage = (snapshot.bytesTransferred/ 
+      snapshot.totalBytes) *100;
+      uploader.value = percentage;
+    },
+    function error(err){
+
+    },
+    function complete(){
+
+    });
+      
+    });
+
+  
+  firebase.analytics();
+</script>
+
+</body>
+</html> 
+
