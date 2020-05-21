@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Code To Add Favicon -->
+  <link rel="shortcut icon" type="image/png" href="/img/smallFav.png">
+  <title>Skip The Door - Store</title>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyC-n2aDGPBRbl3LAtsW9Ih-rPSe9O8wuXE",
+      authDomain: "group36-a3695.firebaseapp.com",
+      databaseURL: "https://group36-a3695.firebaseio.com",
+      projectId: "group36-a3695",
+      storageBucket: "group36-a3695.appspot.com",
+      messagingSenderId: "442042715299",
+      appId: "1:442042715299:web:bcc01e94cb94902f088316"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    //Firestore database reference
+    const db = firebase.firestore();
+  </script>
+
+  <!-- Add JQuery  -->
+  <script type='text/javascript' src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body {
+      height: 60vh;
+    }
+
+    main {
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #1C2331 !important;
+      }
+    }
+
+    main {
+      margin: 0;
+      padding: 0;
+    }
+
+    #agreement {
+      font-size: 8pt;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="./index.html">
+        <strong>Skip The Door</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="./index.html">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_blank">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./login.html">Sign-up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" target="_blank">Settings</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+  <div class="view full-page-intro"
+    style="background-image: url('./img/vendor1.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+      <!-- Content -->
+      <div class="container">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4 white-text text-center text-md-left">
+
+            <h1 id="welcome" class="display-4 font-weight-bold">Welcome Charlie</h1>
+
+            <hr class="hr-light">
+
+            <p>
+              <strong>Link your google sheets with our application!</strong>
+            </p>
+
+            <div class="row">
+              <div class="col-6">
+                <button id="signin-button" onclick="handleSignInClick()" class="btn btn-unique btn-md">Connect to
+                  Googlesheets
+                  <i class="fas fa-graduation-cap ml-2"></i>
+                </button>
+              </div>
+
+              <div class="col">
+                <button id="signout-button" onclick="handleSignOutClick()" class="btn btn-unique btn-md">Unsync
+                  Googlesheets
+                  <i class="fas fa-graduation-cap ml-2"></i>
+                </button>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col">
+                <a href="./vendor2.html" class="btn btn-unique btn-md">
+                  Update Changes from Googlesheets
+                  <i class="fas fa-graduation-cap ml-2"></i>
+                </a>
+              </div>
+            </div>
+
+            <div id="update" class="row">
+              <div class="col">
+                <button onClick="updateInfo()" class="btn btn-unique btn-md">
+                  Update User Information
+                  <i class="fas fa-graduation-cap ml-2"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div id="user" class="col-md-6 col-xl-5 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card content-->
+              <div class="card-body">
+
+                <!-- Form -->
+                <form id="userInfo">
+                  <!-- Heading -->
+                  <h3 class="dark-grey-text text-center">
+                    <strong>Update your information</strong>
+                  </h3>
+                  <hr>
+
+                  <div class="md-form">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="form1" class="form-control">
+                    <label for="form1">Store Name</label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="text" id="form2" class="form-control">
+                    <label for="form2">Store Address</label>
+                  </div>
+
+                  <div class="md-form">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="text" id="form3" class="form-control">
+                    <label for="form3">Googlesheets URL</label>
+                  </div>
+
+                  <div class="text-center">
+                    <fieldset class="form-check mb-3">
+                      <input type="checkbox" class="form-check-input" id="checkbox1">
+                      <label id="agreement" for="checkbox1" class="form-check-label grey-text">By checking the box, you
+                        accept
+                        and agree to the terms and conditions of customer to vendor consensus in accordance
+                        to Skip-The-Door © 2020 Privacy Act 1021.
+                      </label>
+                    </fieldset>
+
+                    <button type="button" class="btn btn-unique" onClick="updateUserInfo()">Confirm</button>
+                  </div>
+
+                </form>
+                <!-- Form -->
+
+              </div>
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </div>
+      <!-- Content -->
+
+    </div>
+    <!-- Mask & flexbox options-->
+
+  </div>
+  <!-- Full Page Intro -->
+
+  </section>
+  <!--Section: Cards-->
+
+  </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+      <a class="btn btn-outline-white" href="./login.html" target="_blank" role="button">Sign-up
+        <i class="fas fa-user ml-2"></i>
+      </a>
+      <a class="btn btn-outline-white" href="#" target="_blank" role="button">Shop Now
+        <i class="fas fa-shopping-cart ml-2"></i>
+      </a>
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+      <a href="#" target="_blank">
+        <i class="fab fa-facebook-f mr-3"></i>
+      </a>
+
+      <a href="#" target="_blank">
+        <i class="fab fa-twitter mr-3"></i>
+      </a>
+
+      <a href="#" target="_blank">
+        <i class="fab fa-youtube mr-3"></i>
+      </a>
+
+      <a href="#" target="_blank">
+        <i class="fab fa-google-plus-g mr-3"></i>
+      </a>
+
+      <a href="#" target="_blank">
+        <i class="fab fa-github mr-3"></i>
+      </a>
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2020 Copyright: (Skip The Door)
+      <a href="#" target="_blank"> https://group36-a3695.web.app </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <script>
+    // var uid;
+    // var googlesheetsID;
+
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   var form = document.getElementById("user");
+    //   uid = user.uid;
+    //   if (user) {
+    //     var docRef = db.collection("users").doc(uid);
+
+    //     docRef.get().then(function (doc) {
+    //       if (doc.exists) {
+    //         console.log("Document data:", doc.data());
+    //         form.style.display = "none";
+    //         googlesheetsID = doc.data().googlesheetsURL;
+    //         console.log(googlesheetsID);
+    //       } else {
+    //         // doc.data() will be undefined in this case
+    //         console.log("No such document!");
+    //       }
+    //     }).catch(function (error) {
+    //       console.log("Error getting document:", error);
+    //     });
+
+    //   } else {
+    //     // User not logged in or has just logged out.
+    //   }
+    // });
+
+    function makeApiCall() {
+      var uid;
+
+      firebase.auth().onAuthStateChanged((user) => {
+        var form = document.getElementById("user");
+        uid = user.uid;
+        if (user) {
+          var docRef = db.collection("users").doc(uid);
+
+          docRef.get().then(function (doc) {
+            if (doc.exists) {
+              console.log("Document data:", doc.data());
+              form.style.display = "none";
+
+              rawInputURL = doc.data().googlesheetsURL;
+              var input = rawInputURL.split('/');
+              var googlesheetsID = input[5];
+
+              console.log(googlesheetsID);
+
+              var params = {
+                // The ID of the spreadsheet to retrieve data from.
+                spreadsheetId: googlesheetsID, // TODO: Update placeholder value.
+
+                // The A1 notation of the values to retrieve.
+                range: 'Sheet1', // TODO: Update placeholder value.
+              };
+
+
+
+              var request = gapi.client.sheets.spreadsheets.values.get(params);
+              request.then(function (response) {
+                // TODO: Change code below to process the `response` object:
+                populateFirebaseWithProducts(response.result, uid);
+                console.log(response.result);
+
+              }, function (reason) {
+                console.error('error: ' + reason.result.error.message);
+              });
+
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
+          }).catch(function (error) {
+            console.log("Error getting document:", error);
+          });
+
+        } else {
+          // User not logged in or has just logged out.
+        }
+      });
+
+
+    }
+
+    function initClient() {
+      var API_KEY = 'AIzaSyAb8oIKcpF5_l22H6LPV_cPsMWMXAotbpw'; // TODO: Update placeholder with desired API key.
+
+      var CLIENT_ID =
+        '319704064195-lfbg03net9enhq6jqail5264fjbll6vi.apps.googleusercontent.com'; // TODO: Update placeholder with desired client ID.
+
+      // TODO: Authorize using one of the following scopes:
+      //   'https://www.googleapis.com/auth/drive'
+      //   'https://www.googleapis.com/auth/drive.file'
+      //   'https://www.googleapis.com/auth/drive.readonly'
+      //   'https://www.googleapis.com/auth/spreadsheets'
+      //   'https://www.googleapis.com/auth/spreadsheets.readonly'
+      var SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+
+      gapi.client.init({
+        'apiKey': API_KEY,
+        'clientId': CLIENT_ID,
+        'scope': SCOPE,
+        'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+      }).then(function () {
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+        updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      });
+    }
+
+    function handleClientLoad() {
+      gapi.load('client:auth2', initClient);
+    }
+
+    function updateSignInStatus(isSignedIn) {
+      if (isSignedIn) {
+        makeApiCall();
+      }
+    }
+
+    function handleSignInClick(event) {
+      gapi.auth2.getAuthInstance().signIn();
+    }
+
+    function handleSignOutClick(event) {
+      gapi.auth2.getAuthInstance().signOut();
+    }
+
+    function populateFirebaseWithProducts(result, uid) {
+      for (var row = 1; row < result.values.length; row++) {
+        var productName = result.values[row][0];
+        for (var col = 0; col < result.values[0].length; col++) {
+          var columnTitle = result.values[0][col];
+          db.collection("users").doc(uid).collection("products").doc(productName).set({
+            [columnTitle]: result.values[row][col] + ""
+          }, {
+            merge: true
+          });
+        }
+      }
+    }
+
+    function updateUserInfo(event) {
+      console.log(document.getElementById("form1").value);
+
+      firebase.auth().onAuthStateChanged(function (user) {
+        var userid = user.uid;
+        var storeName = document.getElementById("form1").value;
+        var storeAddress = document.getElementById("form2").value;
+        var googlesheetsURL = document.getElementById("form3").value;
+
+        db.collection("users").doc(userid).set({
+          storeName: storeName,
+          storeAddress: storeAddress,
+          googlesheetsURL: googlesheetsURL
+        }, {
+          merge: true
+        });
+      })
+    }
+
+    function updateInfo() {
+      var form = document.getElementById("user");
+      var updateButton = document.getElementById("update");
+      if (form.style.display === "none") {
+        form.style.display = "block";
+      } else {
+        form.style.display = "none";
+      }
+    }
+  </script>
+
+  <script>
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        var name = user.displayName.split(" ", 1);
+
+        document.getElementById("welcome").innerHTML = "Hi " + name + "!";
+      } else {
+        console.log(user);
+      }
+    });
+  </script>
+
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+  </script>
+
+</body>
+
+
+</html>

@@ -129,8 +129,8 @@
               </p>
 
               <form class="form-inline mr-auto">
-                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
-                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick">Search</button>
               </form>
             </div>
             <!-- Content -->
@@ -161,8 +161,8 @@
               </p>
 
               <form class="form-inline mr-auto">
-                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
-                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick">Search</button>
               </form>
             </div>
             <!-- Content -->
@@ -193,8 +193,8 @@
               </p>
 
               <form class="form-inline mr-auto">
-                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
-                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick">Search</button>
               </form>
             </div>
             <!-- Content -->
@@ -819,6 +819,14 @@
   <!--/.Footer-->
 
   <!-- SCRIPTS -->
+  <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-firestore.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-analytics.js"></script>
+  <script src="js/thisFirebase.js"></script>
+  <script src="js/search.js"></script>
+
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
@@ -832,6 +840,21 @@
     // Animations initialization
     new WOW().init();
   </script>
+
+<input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+<button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick">Search</button>
+
+<script>
+function goSearch() {
+  localStorage.setItem("homeSearch", document.getElementById("searchBar").value);
+  console.log(localStorage.getItem("homeSearch"));
+}
+
+
+document.getElementById("searchClick").onclick = goSearch;
+</script>
+
+
 </body>
 
 </html>

@@ -31,38 +31,23 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
-
-
-    // function search() {
-    //     var parameters = {orderBy:"Description", equalTo: searcher};
-    //     var data = db.getData("", parameters);
-    //     for (var i in data) {
-    //         console.log(data[i].name)
-    //     }
-    // }
-
-
     function search() {
+      let search = document.getElementById("searcher").value;
+      var proRef = db.collection("users").doc("charliewei").collection("products");
+      var query = proRef.where("Description", "==", search)
+            .get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
 
-        db.collection("users").doc("charliewei").collection("products").where("Description", "==", "Fruit").get().then(function(doc) {
-            if (doc.exists) {
-      console.log("Document data:", doc.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-        });
-
-
-
-        // var firebaseUrl = "https://script-examples.firebaseio.com/";
-        // var base = FirebaseApp.getDatabaseByUrl(firebaseUrl);
-        // var queryParameters = {orderBy:"Description", equalTo: "Fruit"};
-        // var data = base.getData("", queryParameters);
-        // for(var i in data) {
-        //     console.log(data[i].Product);
-        // }
-  }
+                    // doc.data() is never undefined for query doc snapshots
+                    console.log(doc.id);
+                    console.log(doc.data()["Price"]);
+                });
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+          }
 
     document.getElementById("submit").onclick = search;
 </script>
