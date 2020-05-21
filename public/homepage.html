@@ -841,13 +841,12 @@
     new WOW().init();
   </script>
 
-<input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
-<button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick">Search</button>
 
 <script>
 function goSearch() {
   localStorage.setItem("homeSearch", document.getElementById("searchBar").value);
   console.log(localStorage.getItem("homeSearch"));
+  window.location.pathname = 'public/store.html';
 }
 
 
