@@ -359,55 +359,65 @@
     //   })
     // });
 
-    function search() {
-      // Clear previous results
-      document.getElementById("add-products").innerHTML = "";
+    db.collection("users").get().then((snapshot) => {
+      snapshot.docs.forEach(doc => {
+        db.collection("users").doc(doc.id).collection("products").get().then((snapshot) => {
+          snapshot.docs.forEach(doc => {
+            renderProducts(doc);
+          })
+        })
+      })
+    });
 
-      let search = document.getElementById("searcher").value;
+    // function search() {
+    //   // Clear previous results
+    //   document.getElementById("add-products").innerHTML = "";
 
-      // Easter egg
-      if (search == "sdrawkcaB") {
-        window.location.pathname = 'public/sdrawkcaB.html';
-      } else {
-      // Tidy user input
-      search = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase();
-      //Declare query area
-      var proRef = db.collection("users").doc("charliewei").collection("products");
+    //   let search = document.getElementById("searcher").value;
 
-      // Search (array)
-      var query = proRef.where("Products", "array-contains", search)
-          .get()
-                .then(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
-                      renderProducts(doc);
-                        // doc.data() is never undefined for query doc snapshots
-                        console.log(doc.id);
-                        console.log(doc.data()["Price"]);
-                    });
-                })
-                .catch(function(error) {
-                    console.log("Error getting documents: ", error);
-                });
-              }
-      }
+    //   // Easter egg
+    //   if (search == "sdrawkcaB") {
+    //     window.location.pathname = 'public/sdrawkcaB.html';
+    //   } else {
+    //   // Tidy user input
+    //   search = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase();
+    //   //Declare query area
+    //   var proRef = db.collection("users").doc("charliewei").collection("products");
 
-      // // Search (description)
-      // var query = proRef.where("Description", "==", search)
-      //       .get()
-      //       .then(function(querySnapshot) {
-      //           querySnapshot.forEach(function(doc) {
-      //             renderProducts(doc);
-      //               // doc.data() is never undefined for query doc snapshots
-      //               console.log(doc.id);
-      //               console.log(doc.data()["Price"]);
-      //           });
-      //       })
-      //       .catch(function(error) {
-      //           console.log("Error getting documents: ", error);
-      //       });
-      //     }
+    //   // Search (array)
+    //   var query = proRef.where("Products", "array-contains", search)
+    //       .get()
+    //             .then(function(querySnapshot) {
+    //                 querySnapshot.forEach(function(doc) {
+    //                   renderProducts(doc);
+    //                     // doc.data() is never undefined for query doc snapshots
+    //                     console.log(doc.id);
+    //                     console.log(doc.data()["Price"]);
+    //                 });
+    //             })
+    //             .catch(function(error) {
+    //                 console.log("Error getting documents: ", error);
+    //             });
+    //           }
+    //   }
 
-    document.getElementById("submit").onclick = search;
+    //   // // Search (description)
+    //   // var query = proRef.where("Description", "==", search)
+    //   //       .get()
+    //   //       .then(function(querySnapshot) {
+    //   //           querySnapshot.forEach(function(doc) {
+    //   //             renderProducts(doc);
+    //   //               // doc.data() is never undefined for query doc snapshots
+    //   //               console.log(doc.id);
+    //   //               console.log(doc.data()["Price"]);
+    //   //           });
+    //   //       })
+    //   //       .catch(function(error) {
+    //   //           console.log("Error getting documents: ", error);
+    //   //       });
+    //   //     }
+
+    // document.getElementById("submit").onclick = search;
   </script>
 
 </body>

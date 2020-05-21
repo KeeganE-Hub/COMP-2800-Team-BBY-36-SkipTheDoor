@@ -34,6 +34,9 @@
     const db = firebase.firestore();
   </script>
 
+  <!-- Add JQuery  -->
+  <script type='text/javascript' src='https://code.jquery.com/jquery-3.5.0.min.js'></script>
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -144,7 +147,7 @@
           <!--Grid column-->
           <div class="col-md-6 mb-4 white-text text-center text-md-left">
 
-            <h1 class="display-4 font-weight-bold">Welcome Charlie</h1>
+            <h1 id="welcome" class="display-4 font-weight-bold">Welcome Charlie</h1>
 
             <hr class="hr-light">
 
@@ -154,17 +157,17 @@
 
             <div class="row">
               <div class="col-6">
-                <button id="signin-button" onclick="handleSignInClick()"
-                  class="btn btn-unique btn-md">Connect to Googlesheets
+                <button id="signin-button" onclick="handleSignInClick()" class="btn btn-unique btn-md">Connect to
+                  Googlesheets
                   <i class="fas fa-graduation-cap ml-2"></i>
-              </button>
+                </button>
               </div>
 
               <div class="col">
-                <button id="signout-button" onclick="handleSignOutClick()"
-                  class="btn btn-unique btn-md">Unsync Googlesheets
+                <button id="signout-button" onclick="handleSignOutClick()" class="btn btn-unique btn-md">Unsync
+                  Googlesheets
                   <i class="fas fa-graduation-cap ml-2"></i>
-              </button>
+                </button>
               </div>
 
             </div>
@@ -177,11 +180,20 @@
               </div>
             </div>
 
+            <div id="update" class="row">
+              <div class="col">
+                <button onClick="updateInfo()" class="btn btn-unique btn-md">
+                  Update User Information
+                  <i class="fas fa-graduation-cap ml-2"></i>
+                </button>
+              </div>
+            </div>
+
           </div>
           <!--Grid column-->
 
           <!--Grid column-->
-          <div class="col-md-6 col-xl-5 mb-4">
+          <div id="user" class="col-md-6 col-xl-5 mb-4">
 
             <!--Card-->
             <div class="card">
@@ -190,7 +202,7 @@
               <div class="card-body">
 
                 <!-- Form -->
-                <form name="">
+                <form id="userInfo">
                   <!-- Heading -->
                   <h3 class="dark-grey-text text-center">
                     <strong>Update your information</strong>
@@ -224,7 +236,7 @@
                       </label>
                     </fieldset>
 
-                    <button class="btn btn-unique">Confirm</button>
+                    <button type="button" class="btn btn-unique" onClick="updateUserInfo()">Confirm</button>
                   </div>
 
                 </form>
@@ -308,24 +320,88 @@
   <!--/.Footer-->
 
   <script>
+    // var uid;
+    // var googlesheetsID;
+
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   var form = document.getElementById("user");
+    //   uid = user.uid;
+    //   if (user) {
+    //     var docRef = db.collection("users").doc(uid);
+
+    //     docRef.get().then(function (doc) {
+    //       if (doc.exists) {
+    //         console.log("Document data:", doc.data());
+    //         form.style.display = "none";
+    //         googlesheetsID = doc.data().googlesheetsURL;
+    //         console.log(googlesheetsID);
+    //       } else {
+    //         // doc.data() will be undefined in this case
+    //         console.log("No such document!");
+    //       }
+    //     }).catch(function (error) {
+    //       console.log("Error getting document:", error);
+    //     });
+
+    //   } else {
+    //     // User not logged in or has just logged out.
+    //   }
+    // });
+
     function makeApiCall() {
-      var params = {
-        // The ID of the spreadsheet to retrieve data from.
-        spreadsheetId: '16MDoo13JCiftl75XIUqiF0B0lKet7Wl7MO64KjQNvM0', // TODO: Update placeholder value.
+      var uid;
 
-        // The A1 notation of the values to retrieve.
-        range: 'Sheet1', // TODO: Update placeholder value.
-      };
+      firebase.auth().onAuthStateChanged((user) => {
+        var form = document.getElementById("user");
+        uid = user.uid;
+        if (user) {
+          var docRef = db.collection("users").doc(uid);
 
-      var request = gapi.client.sheets.spreadsheets.values.get(params);
-      request.then(function (response) {
-        // TODO: Change code below to process the `response` object:
-        populateFirebaseWithProducts(response.result);
-        console.log(response.result);
-        
-      }, function (reason) {
-        console.error('error: ' + reason.result.error.message);
+          docRef.get().then(function (doc) {
+            if (doc.exists) {
+              console.log("Document data:", doc.data());
+              form.style.display = "none";
+
+              rawInputURL = doc.data().googlesheetsURL;
+              var input = rawInputURL.split('/');
+              var googlesheetsID = input[5];
+
+              console.log(googlesheetsID);
+
+              var params = {
+                // The ID of the spreadsheet to retrieve data from.
+                spreadsheetId: googlesheetsID, // TODO: Update placeholder value.
+
+                // The A1 notation of the values to retrieve.
+                range: 'Sheet1', // TODO: Update placeholder value.
+              };
+
+
+
+              var request = gapi.client.sheets.spreadsheets.values.get(params);
+              request.then(function (response) {
+                // TODO: Change code below to process the `response` object:
+                populateFirebaseWithProducts(response.result, uid);
+                console.log(response.result);
+
+              }, function (reason) {
+                console.error('error: ' + reason.result.error.message);
+              });
+
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
+          }).catch(function (error) {
+            console.log("Error getting document:", error);
+          });
+
+        } else {
+          // User not logged in or has just logged out.
+        }
       });
+
+
     }
 
     function initClient() {
@@ -371,23 +447,64 @@
       gapi.auth2.getAuthInstance().signOut();
     }
 
-    function populateFirebaseWithProducts(result) {
+    function populateFirebaseWithProducts(result, uid) {
       for (var row = 1; row < result.values.length; row++) {
         var productName = result.values[row][0];
         for (var col = 0; col < result.values[0].length; col++) {
           var columnTitle = result.values[0][col];
-          db.collection("users").doc("charliewei2").collection("products").doc(productName).set({
+          db.collection("users").doc(uid).collection("products").doc(productName).set({
             [columnTitle]: result.values[row][col] + ""
-          }, {merge: true});
+          }, {
+            merge: true
+          });
         }
+      }
+    }
+
+    function updateUserInfo(event) {
+      console.log(document.getElementById("form1").value);
+
+      firebase.auth().onAuthStateChanged(function (user) {
+        var userid = user.uid;
+        var storeName = document.getElementById("form1").value;
+        var storeAddress = document.getElementById("form2").value;
+        var googlesheetsURL = document.getElementById("form3").value;
+
+        db.collection("users").doc(userid).set({
+          storeName: storeName,
+          storeAddress: storeAddress,
+          googlesheetsURL: googlesheetsURL
+        }, {
+          merge: true
+        });
+      })
+    }
+
+    function updateInfo() {
+      var form = document.getElementById("user");
+      var updateButton = document.getElementById("update");
+      if (form.style.display === "none") {
+        form.style.display = "block";
+      } else {
+        form.style.display = "none";
       }
     }
   </script>
 
-  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
-    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  <script>
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        var name = user.displayName.split(" ", 1);
+
+        document.getElementById("welcome").innerHTML = "Hi " + name + "!";
+      } else {
+        console.log(user);
+      }
+    });
   </script>
 
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
   </script>
 
   <!-- SCRIPTS -->
