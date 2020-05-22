@@ -264,16 +264,16 @@
       mainrow.setAttribute("data-id", doc.id);
       
       // img.setAttribute("src", "./img/dummy.jpg");
-      img.setAttribute("src", doc.data().Image);
-      if (doc.data().Image.length == 0) {
+      // img.setAttribute("src", doc.data().Image);
+      if (doc.data().Image.length == 0 || doc.data().Image == "123") {
         img.setAttribute("src", "./img/dummy.jpg");
       };
-      img.style.width = "24em";
-      img.style.height = "17em";
+      img.style.width = "23em";
+      img.style.height = "23em";
       nameanchor.setAttribute("href", "/product.html");
       // addbutton.setAttribute("type", "button");
 
-      nametag.textContent = doc.data().Store + " " + doc.data().Location;
+      nametag.textContent = doc.data().Location;
       // nametag.textContent = doc.data().Product;
       // location.textContent = doc.data().Location;
       location.textContent = doc.data().Product;
@@ -321,32 +321,16 @@
 
       // Easter egg
       if (search == "Backwards") {
-        window.location.pathname = 'public/store.html';
+        window.location.pathname = './store.html';
       } else {
       // Tidy user input
       search = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase();
+
       //Declare query area
-
-      // var proRef = db.collection("users").doc("charliewei").collection("products");
       var proRef = db.collection("market");
-
-    // // Search (array)
-    // var query = proRef.where("Products", "array-contains", search)
-    //     .get()
-    //           .then(function(querySnapshot) {
-    //               querySnapshot.forEach(function(doc) {
-    //                 renderProducts(doc);
-    //                   // doc.data() is never undefined for query doc snapshots
-    //                   console.log(doc.id);
-    //                   console.log(doc.data()["Price"]);
-    //               });
-    //           })
-    //           .catch(function(error) {
-    //               console.log("Error getting documents: ", error);
-    //           });
     
     // Search (description)
-    var query = proRef.where("Description", "==", search)
+    var query = proRef.where("Product", "==", search)
           .get()
           .then(function(querySnapshot) {
               querySnapshot.forEach(function(doc) {
@@ -365,7 +349,6 @@
 document.getElementById("submit").onclick = search;
   </script>
 
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 
 
