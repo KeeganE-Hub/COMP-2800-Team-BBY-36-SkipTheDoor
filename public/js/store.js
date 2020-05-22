@@ -83,7 +83,7 @@
       productlist.appendChild(linebreak);
     }
 
-    if (localStorage.getItem("homeSearch") == null) {
+    if (localStorage.getItem("homeSearch") == null || localStorage.getItem("homeSearch") == "") {
                 //Lists all products.
                 db.collection("market").get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
