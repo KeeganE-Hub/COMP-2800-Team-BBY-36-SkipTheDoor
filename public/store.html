@@ -305,7 +305,14 @@
       productlist.appendChild(linebreak);
     }
 
-    if (localStorage.getItem("homeSearch") != "1") {
+    if (localStorage.getItem("homeSearch") == null) {
+                //Lists all products.
+                db.collection("market").get().then((snapshot) => {
+      snapshot.docs.forEach(doc => {
+        renderProducts(doc);
+      })
+    });
+    } else if (localStorage.getItem("homeSearch") != "1") {
       
       let search = localStorage.getItem("homeSearch");
       // Tidy user input
@@ -335,7 +342,7 @@
         renderProducts(doc);
       })
     });
-  }
+  };
 
 
     function search() {
