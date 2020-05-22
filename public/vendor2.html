@@ -441,6 +441,20 @@
           });
         }
       }
+
+      for (var row = 1; row < result.values.length; row++) {
+        var productName = result.values[row][0];
+          var columnTitle = result.values[0][col];
+            
+          db.collection("market").add({
+            Product: result.values[row][0] + "",
+            Description: result.values[row][1] + "",
+            Price: result.values[row][2] + "",
+            Quantity: result.values[row][3] + "",
+            Location: result.values[row][4] + "",
+            Image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/colorful-of-dahlia-pink-flower-in-beautiful-garden-royalty-free-image-825886130-1554743243.jpg?crop=0.669xw:1.00xh;0.331xw,0&resize=640:*3"
+          });
+      }
     }
 
     function updateUserInfo(event) {
