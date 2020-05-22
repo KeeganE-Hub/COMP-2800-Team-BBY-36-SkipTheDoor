@@ -123,7 +123,7 @@
             <a class="nav-link" href="./login.html">Sign-up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./vendor2.html">Settings</a>
+            <a class="nav-link" href="./vendor.html">Settings</a>
           </li>
         </ul>
       </div>
@@ -173,8 +173,17 @@
             </div>
             <div class="row">
               <div class="col">
-                <a href="./vendor2.html" class="btn btn-unique btn-md">
+                <a href="./vendor.html" class="btn btn-unique btn-md">
                   Update Changes from Googlesheets
+                  <i class="fas fa-graduation-cap ml-2"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <a href="./storeForm.html" class="btn btn-unique btn-md">
+                  Update Products Individually
                   <i class="fas fa-graduation-cap ml-2"></i>
                 </a>
               </div>
@@ -266,6 +275,122 @@
   <!--Section: Cards-->
 
   </div>
+
+  <div class="row">
+    <div class="col ">
+      <div class="container mt-5">
+        <!--Section: Content-->
+        <section>
+
+          <!-- Section heading -->
+          <h3 class="font-weight-bold black-text mb-4 pb-2 text-center">Instructions</h3>
+          <hr class="w-header">
+          <!-- Section description -->
+          <p class="lead text-muted mx-auto mt-4 pt-2 mb-5 text-center">Follow these quick steps</p>
+
+          <div class="row">
+            <div class="col-md-12 col-lg-10 mx-auto mb-5">
+
+              <!--Accordion wrapper-->
+              <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+                <!-- Accordion card -->
+                <div class="card border-top border-bottom-0 border-left border-right border-light">
+
+                  <!-- Card header -->
+                  <div class="card-header border-bottom border-light" role="tab" id="headingOne1">
+                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                      aria-controls="collapseOne1">
+                      <h5 class="black-text font-weight-normal mb-0">
+                        1) Submit the required information in the form above <i class="fas fa-angle-down rotate-icon"></i>
+                      </h5>
+                    </a>
+                  </div>
+
+                  <!-- Card body -->
+                  <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
+                    data-parent="#accordionEx">
+                    <div class="card-body">
+                      A) Fill in the store name, store address, along with the googlesheets URL and then hit the "submit" button.
+                      <br>
+                      B) Obtain your googlesheets URL by copying the exact URL of the googlesheet you plan to use.
+                    </div>
+                  </div>
+
+                </div>
+                <!-- Accordion card -->
+
+                <!-- Accordion card -->
+                <div class="card border-bottom-0 border-left border-right border-light">
+
+                  <!-- Card header -->
+                  <div class="card-header border-bottom border-light" role="tab" id="headingTwo2">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                      aria-expanded="false" aria-controls="collapseTwo2">
+                      <h5 class="black-text font-weight-normal mb-0">
+                        2) Connect your personal googlesheets to our App <i class="fas fa-angle-down rotate-icon"></i>
+                      </h5>
+                    </a>
+                  </div>
+
+                  <!-- Card body -->
+                  <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+                    data-parent="#accordionEx">
+                    <div class="card-body">
+                      A) Once the form is submitted, please click the "connect to googlesheets" button
+                      <br>
+                      B) Then log-in to your google account.
+                    </div>
+                  </div>
+
+                </div>
+                <!-- Accordion card -->
+
+                <!-- Accordion card -->
+                <div class="card border-bottom-0 border-left border-right border-light">
+
+                  <!-- Card header -->
+                  <div class="card-header border-bottom border-light" role="tab" id="headingThree3">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+                      aria-expanded="false" aria-controls="collapseThree3">
+                      <h5 class="black-text font-weight-normal mb-0">
+                        3) Upload products onto our site<i class="fas fa-angle-down rotate-icon"></i>
+                      </h5>
+                    </a>
+                  </div>
+
+                  <!-- Card body -->
+                  <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
+                    data-parent="#accordionEx">
+                    <div class="card-body">
+                      A) Please upload the products you wish to display on our 
+                      site onto your personal googlesheet
+                      <br>
+                      B) Please fill out your googlesheet with the following sample format
+                      given by clicking the "Sample Format" button below
+                      <a href="https://docs.google.com/spreadsheets/d/16MDoo13JCiftl75XIUqiF0B0lKet7Wl7MO64KjQNvM0/edit#gid=0" target="_blank"><button class="btn btn-unique btn-sm">Sample Format</button></a>
+                      <br>
+                      Note: columns must be in the correct order as given in the samplesheet
+                    </div>
+                  </div>
+
+              </div>
+              <!-- Accordion wrapper -->
+
+            </div>
+          </div>
+
+        </section>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
   </main>
   <!--Main layout-->
 
@@ -287,7 +412,9 @@
 
     <!-- Social icons -->
     <div class="pb-4">
-      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Used the amazing site Skip The Door today! Visit now." data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+        data-text="Used the amazing site Skip The Door today! Visit now." data-show-count="false">Tweet</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
     <!-- Social icons -->
 
@@ -301,202 +428,7 @@
   </footer>
   <!--/.Footer-->
 
-  <script>
-    // var uid;
-    // var googlesheetsID;
-
-    // firebase.auth().onAuthStateChanged((user) => {
-    //   var form = document.getElementById("user");
-    //   uid = user.uid;
-    //   if (user) {
-    //     var docRef = db.collection("users").doc(uid);
-
-    //     docRef.get().then(function (doc) {
-    //       if (doc.exists) {
-    //         console.log("Document data:", doc.data());
-    //         form.style.display = "none";
-    //         googlesheetsID = doc.data().googlesheetsURL;
-    //         console.log(googlesheetsID);
-    //       } else {
-    //         // doc.data() will be undefined in this case
-    //         console.log("No such document!");
-    //       }
-    //     }).catch(function (error) {
-    //       console.log("Error getting document:", error);
-    //     });
-
-    //   } else {
-    //     // User not logged in or has just logged out.
-    //   }
-    // });
-
-    function makeApiCall() {
-      var uid;
-
-      firebase.auth().onAuthStateChanged((user) => {
-        var form = document.getElementById("user");
-        uid = user.uid;
-        if (user) {
-          var docRef = db.collection("users").doc(uid);
-
-          docRef.get().then(function (doc) {
-            if (doc.exists) {
-              console.log("Document data:", doc.data());
-              form.style.display = "none";
-
-              rawInputURL = doc.data().googlesheetsURL;
-              var input = rawInputURL.split('/');
-              var googlesheetsID = input[5];
-
-              console.log(googlesheetsID);
-
-              var params = {
-                // The ID of the spreadsheet to retrieve data from.
-                spreadsheetId: googlesheetsID, // TODO: Update placeholder value.
-
-                // The A1 notation of the values to retrieve.
-                range: 'Sheet1', // TODO: Update placeholder value.
-              };
-
-
-
-              var request = gapi.client.sheets.spreadsheets.values.get(params);
-              request.then(function (response) {
-                // TODO: Change code below to process the `response` object:
-                populateFirebaseWithProducts(response.result, uid);
-                console.log(response.result);
-
-              }, function (reason) {
-                console.error('error: ' + reason.result.error.message);
-              });
-
-            } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
-            }
-          }).catch(function (error) {
-            console.log("Error getting document:", error);
-          });
-
-        } else {
-          // User not logged in or has just logged out.
-        }
-      });
-
-
-    }
-
-    function initClient() {
-      var API_KEY = 'AIzaSyAb8oIKcpF5_l22H6LPV_cPsMWMXAotbpw'; // TODO: Update placeholder with desired API key.
-
-      var CLIENT_ID =
-        '319704064195-lfbg03net9enhq6jqail5264fjbll6vi.apps.googleusercontent.com'; // TODO: Update placeholder with desired client ID.
-
-      // TODO: Authorize using one of the following scopes:
-      //   'https://www.googleapis.com/auth/drive'
-      //   'https://www.googleapis.com/auth/drive.file'
-      //   'https://www.googleapis.com/auth/drive.readonly'
-      //   'https://www.googleapis.com/auth/spreadsheets'
-      //   'https://www.googleapis.com/auth/spreadsheets.readonly'
-      var SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
-
-      gapi.client.init({
-        'apiKey': API_KEY,
-        'clientId': CLIENT_ID,
-        'scope': SCOPE,
-        'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
-      }).then(function () {
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
-        updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-      });
-    }
-
-    function handleClientLoad() {
-      gapi.load('client:auth2', initClient);
-    }
-
-    function updateSignInStatus(isSignedIn) {
-      if (isSignedIn) {
-        makeApiCall();
-      }
-    }
-
-    function handleSignInClick(event) {
-      gapi.auth2.getAuthInstance().signIn();
-    }
-
-    function handleSignOutClick(event) {
-      gapi.auth2.getAuthInstance().signOut();
-    }
-
-    function populateFirebaseWithProducts(result, uid) {
-      for (var row = 1; row < result.values.length; row++) {
-        var productName = result.values[row][0];
-        for (var col = 0; col < result.values[0].length; col++) {
-          var columnTitle = result.values[0][col];
-          db.collection("users").doc(uid).collection("products").doc(productName).set({
-            [columnTitle]: result.values[row][col] + ""
-          }, {
-            merge: true
-          });
-        }
-      }
-
-      for (var row = 1; row < result.values.length; row++) {
-        var productName = result.values[row][0];
-          var columnTitle = result.values[0][col];
-            
-          db.collection("market").add({
-            Product: result.values[row][0] + "",
-            Description: result.values[row][1] + "",
-            Price: result.values[row][2] + "",
-            Quantity: result.values[row][3] + "",
-            Location: result.values[row][4] + "",
-            Image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/colorful-of-dahlia-pink-flower-in-beautiful-garden-royalty-free-image-825886130-1554743243.jpg?crop=0.669xw:1.00xh;0.331xw,0&resize=640:*3"
-          });
-      }
-    }
-
-    function updateUserInfo(event) {
-      console.log(document.getElementById("form1").value);
-
-      firebase.auth().onAuthStateChanged(function (user) {
-        var userid = user.uid;
-        var storeName = document.getElementById("form1").value;
-        var storeAddress = document.getElementById("form2").value;
-        var googlesheetsURL = document.getElementById("form3").value;
-
-        db.collection("users").doc(userid).set({
-          storeName: storeName,
-          storeAddress: storeAddress,
-          googlesheetsURL: googlesheetsURL
-        }, {
-          merge: true
-        });
-      })
-    }
-
-    function updateInfo() {
-      var form = document.getElementById("user");
-      var updateButton = document.getElementById("update");
-      if (form.style.display === "none") {
-        form.style.display = "block";
-      } else {
-        form.style.display = "none";
-      }
-    }
-  </script>
-
-  <script>
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        var name = user.displayName.split(" ", 1);
-
-        document.getElementById("welcome").innerHTML = "Hi " + name + "!";
-      } else {
-        console.log(user);
-      }
-    });
+  <script src="/js/vendor.js">
   </script>
 
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
