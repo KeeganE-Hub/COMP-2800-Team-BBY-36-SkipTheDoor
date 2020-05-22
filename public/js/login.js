@@ -17,7 +17,7 @@ var uiConfig = {
 },
 // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
 signInFlow: 'popup',
-signInSuccessUrl: 'vendor2.html',
+signInSuccessUrl: 'vendor.html',
 signInOptions: [
     // Leave the lines as is for the providers you want to offer your users.
     //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -28,9 +28,9 @@ signInOptions: [
     //firebase.auth.PhoneAuthProvider.PROVIDER_ID
 ],
 // Terms of service url.
-tosUrl: 'vendor2.html',
+tosUrl: 'vendor.html',
 // Privacy policy url.
-privacyPolicyUrl: 'vendor2.html'
+privacyPolicyUrl: 'vendor.html'
 };
 
 // The start method will wait until the DOM is loaded.
