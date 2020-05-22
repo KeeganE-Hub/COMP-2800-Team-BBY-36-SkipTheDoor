@@ -83,45 +83,14 @@
       productlist.appendChild(linebreak);
     }
 
-    if (localStorage.getItem("homeSearch") == null) {
-                //Lists all products.
-                db.collection("market").get().then((snapshot) => {
+    //Lists all products.
+    db.collection("market").get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
         renderProducts(doc);
       })
     });
-    } else if (localStorage.getItem("homeSearch") != "1") {
-      
-      let search = localStorage.getItem("homeSearch");
-      // Tidy user input
-      search = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase();
 
-      //Declare query area
-      var proRef = db.collection("market");
-
-      // Search (description)
-      var query = proRef.where("Product", "==", search)
-            .get()
-            .then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                  renderProducts(doc);
-                    // doc.data() is never undefined for query doc snapshots
-                });
-            })
-            .catch(function(error) {
-                console.log("Error getting documents: ", error);
-            });
-
-          localStorage.setItem("homeSearch", "1");
-    } else {
-          //Lists all products.
-      db.collection("market").get().then((snapshot) => {
-      snapshot.docs.forEach(doc => {
-        renderProducts(doc);
-      })
-    });
-  };
-
+    console.log(localStorage.getItem("homeSearch"));
 
     function search() {
       // Clear previous results
@@ -130,14 +99,14 @@
       let search = document.getElementById("searcher").value;
 
       // Easter egg
-      if (search == "sdrawkcaB") {
-        window.location.href = "./sdrawkcaB.html";
+      if (search == "Backwards") {
+        window.location.pathname = './store.html';
       } else {
       // Tidy user input
       search = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase();
 
-    //Declare query area
-    var proRef = db.collection("market");
+      //Declare query area
+      var proRef = db.collection("market");
     
     // Search (description)
     var query = proRef.where("Product", "==", search)
@@ -155,4 +124,5 @@
             }
     }
 
-    document.getElementById("submit").onclick = search;
+
+document.getElementById("submit").onclick = search;
