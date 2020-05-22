@@ -34,16 +34,6 @@
     const db = firebase.firestore();
   </script>
 
-  <!-- Retrieving data from firestore -->
-  <script>
-
-    db.collection("users").doc("charliewei").collection("products").get().then((snapshot) => {
-      snapshot.docs.forEach(doc => {
-        console.log(doc.data());
-      })
-    });
-  </script>
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -99,7 +89,7 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand" href="#" target="_blank">
+      <a class="navbar-brand" href="#">
         <strong>Skip The Door</strong>
       </a>
 
@@ -120,13 +110,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" target="_blank">About</a>
+            <a class="nav-link" href="./aboutUs.html">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./login.html">Sign-up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" target="_blank">Settings</a>
+            <a class="nav-link" href="./vendor2.html">Settings</a>
           </li>
         </ul>
       </div>
@@ -164,46 +154,10 @@
 
         <hr class="m-1 mb-3">
 
-        <!--Grid row-->
-        <div class="row wow fadeIn">
+        <div id="add-products">
 
-          <!--Grid column-->
-          <div class="col-lg-5 col-xl-4 mb-4">
-            <!--Featured image-->
-            <div class="view overlay rounded z-depth-1">
-              <img src="./img/dummy.jpg" class="img-fluid img-thumbnail" alt="">
-            </div>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-7 col-xl-7 ml-xl-4 mb-3">
-            <h3 class="font-weight-bold dark-grey-text ">
-              <a href="/product.html"><strong class="blue-grey-text font-weight-bold">Mandarin Oranges</strong></a>
-            </h3>
-            <h5 class="mb-2">
-              (Safeway Burnaby)
-            </h5>
-            <p class="grey-text font-italic">Great for eating out of hand, sweet, easy to peel and full of delicious
-              juice.</p>
-            <div class="row">
-              <div class="col">
-                <p class="font-weight-bold">$0.99 / lb</p>
-              </div>
-              <div class="col">
-                <p class="text-right pr-2">Currently in stock</p>
-              </div>
-            </div>
-
-            <button type="button" class="btn-block btn-unique btn-lg">Add to Cart<i
-                class="fas fa-cart-plus ml-2"></i></button>
-          </div>
-          <!--Grid column-->
 
         </div>
-        <!--Grid row-->
-
-        <hr>
 
         <!--Pagination-->
         <nav class="d-flex justify-content-center wow fadeIn">
@@ -257,20 +211,20 @@
 
     <!--Call to action-->
     <div class="pt-4">
-      <a class="btn btn-outline-white" href="./login.html" target="_blank" role="button">Sign-up
+      <a class="btn btn-outline-white" href="./login.html" role="button">Sign-up
         <i class="fas fa-user ml-2"></i>
       </a>
-      <a class="btn btn-outline-white" href="#" target="_blank" role="button">Shop Now
+      <a class="btn btn-outline-white" href="./store.html" role="button">Shop Now
         <i class="fas fa-shopping-cart ml-2"></i>
       </a>
     </div>
     <!--/.Call to action-->
 
     <hr class="my-4">
-
+    <a href='index copy.html' target="_blank">Post More!</a> 
     <!-- Social icons -->
-    <div class="pb-4">
-      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Used the amazing site Skip The Door today! Visit now." data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div class="pb-4">      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Used the amazing site Skip The Door today! Visit now." data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
     </div>
     <!-- Social icons -->
 
@@ -297,6 +251,103 @@
   <script type="text/javascript">
     // Animations initialization
     new WOW().init();
+  </script>
+
+  <!-- Retrieving data from firestore -->
+  <script>
+    const productlist = document.querySelector("#add-products");
+
+    //Create html elements, add data, and render products
+    function renderProducts(doc) {
+      let mainrow = document.createElement("div");
+      let imgcol = document.createElement("div");
+      let imgcontainer = document.createElement("div");
+      let img = document.createElement("img");
+      let desccol = document.createElement("div");
+      let name = document.createElement("h3");
+      let storeName = document.createElement("h3");
+      let nameanchor = document.createElement("a");
+      let nametag = document.createElement("strong");
+      let location = document.createElement("h5");
+      let description = document.createElement("p");
+      let pricestockrow = document.createElement("div");
+      let pricestockcol1 = document.createElement("div");
+      let price = document.createElement("p");
+      let pricestockcol2 = document.createElement("div");
+      let stock = document.createElement("p");
+      let addbutton = document.createElement("button");
+      let buttonicon = document.createElement("i");
+      let linebreak = document.createElement("hr");
+
+      mainrow.classList.add("row", "wow", "fadeIn");
+      imgcol.classList.add("col-lg-5", "col-xl-4", "mb-4");
+      imgcontainer.classList.add("view", "overlay", "rounded", "z-depth-1");
+      img.classList.add("img-fluid", "img-thumbnail");
+      desccol.classList.add("col-lg-7", "col-xl-7", "ml-xl-4", "mb-3");
+      name.classList.add("font-weight-bold", "dark-grey-text");
+      storeName.classList.add("font-weight-bold", "dark-grey-text");
+      nametag.classList.add("blue-grey-text", "font-weight-bold");
+      location.classList.add("mb-2");
+      description.classList.add("grey-text", "font-italic");
+      pricestockrow.classList.add("row");
+      pricestockcol1.classList.add("col");
+      price.classList.add("font-weight-bold");
+      pricestockcol2.classList.add("col");
+      stock.classList.add("text-right", "pr-2");
+      addbutton.classList.add("btn-block", "btn-unique", "btn-lg");
+      buttonicon.classList.add("fas", "fa-cart-plus", "ml-2");
+
+      mainrow.setAttribute("data-id", doc.id);
+      
+      img.setAttribute("src", doc.data().Image);
+      img.setAttribute("alt", "productimg");
+      nameanchor.setAttribute("href", "/product.html");
+      addbutton.setAttribute("type", "button");
+
+      nametag.textContent = doc.data().Product;
+      storeName.textContent = doc.data().Store;
+      location.textContent = doc.data().Location;
+      description.textContent = doc.data().Description;
+      price.textContent = doc.data().Price;
+      
+      //???????
+      stock.textContent = "Currently in stock";
+      addbutton.textContent = "Add to Cart";
+
+      mainrow.appendChild(imgcol);
+      imgcol.appendChild(imgcontainer);
+      imgcontainer.appendChild(img);
+      mainrow.appendChild(desccol);
+      desccol.appendChild(name);
+      name.appendChild(storeName);
+      storeName.append(nameanchor);
+      nameanchor.appendChild(nametag);
+      desccol.appendChild(location);
+      desccol.appendChild(description);
+      desccol.appendChild(pricestockrow);
+      pricestockrow.appendChild(pricestockcol1);
+      pricestockcol1.appendChild(price);
+      pricestockrow.appendChild(pricestockcol2);
+      pricestockcol2.appendChild(stock);
+      desccol.appendChild(addbutton);
+      addbutton.appendChild(buttonicon);
+
+      productlist.appendChild(mainrow);
+      productlist.appendChild(linebreak);
+    }
+
+    var currUser;
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            currUser = user.uid;
+            console.log("market");
+            db.collection("market").get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+        renderProducts(doc);
+      })
+    })
+        }
+    });
   </script>
 
 </body>

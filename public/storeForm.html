@@ -1,3 +1,4 @@
+<!-- FORM! -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/png" href="https://group36-a3695.web.app/img/smallFav.png">
   <title>Skip The Door</title>
 
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -15,6 +17,12 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+<!-- bootstrap remove later  -->
+<script src="jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <script>
     // Your web app's Firebase configuration
@@ -87,16 +95,51 @@
   
   <!-- Navbar -->
 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Skip the Door</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Account Setting</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+          </div>
+        </li>
+        
+          
+        
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
 
   <!--Main layout-->
   <main>
+  
     <div class="container">
       <div id="postForm">
         <h1 id="postFormTitle">Post Item</h1>
         
         <form id="newPost" onsubmit='return onSubmit(this)'>
           <div id="postFormInnerWrapper">
+
             <div id="productNameWrapper">
               <label>Product Name:</label>
               <input type="text" name="name" id="productName" required="required" placeholder="Choose a descriptive name for your product.">
@@ -108,10 +151,29 @@
               <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your product is." id="productDescription"
                 required></textarea>
             </div>
+
+            <div>
+              <label>Product Location:</label>
+              <textarea name="location" rows="5" maxlength="250" placeholder="Tell us where your product is." id="productLocation"
+                required></textarea>
+            </div>
+
+            <div>
+              <label>Product Price:</label>
+              <textarea name="price" rows="5" maxlength="250" placeholder="Tell us how much your product cost." id="productPrice"
+                required></textarea>
+            </div>
+
+            <div>
+              <label>Product Quantity:</label>
+              <textarea name="quantity" rows="5" maxlength="250" placeholder="Tell us how many of this product you are selling." id="productQuantity"
+                required></textarea>
+            </div>
+
           </div>
     
           <div id="uploadWrapper">
-            <img src="images/defaultImage.png" id="prv" width="400px">
+            <img src="" id="prv" width="400px">
           </div>
           <div>
             <progress value="0" id="uploader" max="100">0%</progress>
@@ -122,7 +184,8 @@
     
     
           <div>
-            <button type="submit" id="formSubmit" name="button">Submit</button>
+            <button type="submit" id="formSubmit" name="button" onclick="setTimeout(open_window,750);">
+            >Submit</button>
           </div>
           
     
@@ -174,6 +237,17 @@
     const settings = {/* your settings... */ timestampsInSnapshots: true };
     firestore.settings(settings);
 
+    var storeName;
+    firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User logged in already or has just logged in.
+    console.log(user.uid);
+    storeName=user.uid;
+    
+  } else {
+    // User not logged in or has just logged out.
+  }
+});
 //Store the uploadedImage image URL 
 var uploadedImage = "images/defaultImage.png";
 
@@ -237,22 +311,42 @@ var task = storageRef.put(file);
 
   });
 
-  
-
 
   function onSubmit( form ){
-  var data = JSON.stringify( $(form).serializeArray() ); //  <-----------
-  var productName = document.getElementById('productName').value;
-  var productDescription = document.getElementById('productDescription').value;
-  db.collection("users/").doc("William Kwok").collection("Post").add({
-            name: productName,
-            description: productDescription,
-            image: uploadedImage,
+  var data = JSON.stringify( $(form).serializeArray() ); 
+  var productName = document.getElementById('productName').value;       //  <-----------
+  var productDescription = document.getElementById('productDescription').value;     //  <-----------
+  var productLocation = document.getElementById('productLocation').value;       //  <-----------
+  var productPrice = document.getElementById('productPrice').value;       //  <-----------
+  var productQuantity = document.getElementById('productQuantity').value;       //  <-----------
+  // we cannot use doc(productName) -> causes error if user posts the same item with same name twice. not unique id to document
+  db.collection("users/").doc(storeName).collection("products").add({
+            Product: productName,
+            Description: productDescription,
+            Price: productPrice,
+            Location: productLocation,
+            Quantity: productQuantity,
+            Image: uploadedImage,
+  });
+// adding function into market database
+  db.collection("market").add({
+            Store: storeName,
+            Product: productName,
+            Description: productDescription,
+            Price: productPrice,
+            Location: productLocation,
+            Quantity: productQuantity,
+            Image: uploadedImage,
   });
   console.log( data );
+  
+  //window.open('store.html', "_self"); -- will cause no data to be stored
   return false; //don't submit
 }
 
+function open_window(){
+  window.open("store.html", "_self");
+}
 
 
 

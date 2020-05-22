@@ -86,7 +86,7 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand" href="#" target="_blank">
+      <a class="navbar-brand" href="#">
         <strong>Skip The Door</strong>
       </a>
 
@@ -107,7 +107,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./aboutUs.html" target="_blank">About</a>
+            <a class="nav-link" href="./aboutUs.html">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./login.html">Sign-up</a>
@@ -155,8 +155,8 @@
               </p>
 
               <form action="store.html" class="form-inline mr-auto">
-                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
-                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick" href="./store.html">Search</button>
               </form>
             </div>
             <!-- Content -->
@@ -187,8 +187,8 @@
               </p>
 
               <form action="store.html" class="form-inline mr-auto">
-                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
-                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick" href="./store.html">Search</button>
               </form>
             </div>
             <!-- Content -->
@@ -219,8 +219,8 @@
               </p>
 
               <form action="store.html" class="form-inline mr-auto">
-                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
-                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick" href="./store.html">Search</button>
               </form>
             </div>
             <!-- Content -->
@@ -326,7 +326,7 @@
             </p>
 
             <!-- CTA -->
-            <a target="_blank" href="#" class="btn btn-indigo btn-md">Shop Now
+            <a href="./store.html" class="btn btn-indigo btn-md">Shop Now
             </a>
 
           </div>
@@ -366,7 +366,7 @@
             </p>
 
             <!-- CTA -->
-            <a target="_blank" href="./login.html" class="btn btn-indigo btn-md">Sign-up
+            <a href="./login.html" class="btn btn-indigo btn-md">Sign-up
             </a>
 
           </div>
@@ -496,10 +496,10 @@
 
     <!--Call to action-->
     <div class="pt-4">
-      <a class="btn btn-outline-white" href="./login.html" target="_blank" role="button">Sign-up
+      <a class="btn btn-outline-white" href="./login.html" role="button">Sign-up
         <i class="fas fa-user ml-2"></i>
       </a>
-      <a class="btn btn-outline-white" href="#" target="_blank" role="button">Shop Now
+      <a class="btn btn-outline-white" href="./store.html" role="button">Shop Now
         <i class="fas fa-shopping-cart ml-2"></i>
       </a>
     </div>
@@ -508,26 +508,7 @@
     <hr class="my-4">
 
     <!-- Social icons -->
-    <div class="pb-4">
-      <a href="#" target="_blank">
-        <i class="fab fa-facebook-f mr-3"></i>
-      </a>
-
-      <a href="#" target="_blank">
-        <i class="fab fa-twitter mr-3"></i>
-      </a>
-
-      <a href="#" target="_blank">
-        <i class="fab fa-youtube mr-3"></i>
-      </a>
-
-      <a href="#" target="_blank">
-        <i class="fab fa-google-plus-g mr-3"></i>
-      </a>
-
-      <a href="#" target="_blank">
-        <i class="fab fa-github mr-3"></i>
-      </a>
+    <div class="pb-4">      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Used the amazing site Skip The Door today! Visit now." data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
     <!-- Social icons -->
 
@@ -556,6 +537,16 @@
     new WOW().init();
   </script>
 
+<script>
+  function goSearch() {
+  myStorage = window.localStorage;
+  localStorage.setItem("homeSearch", document.getElementById("searchBar").value);
+  console.log(localStorage.getItem("homeSearch"));
+}
+
+
+document.getElementById("searchClick").onclick = goSearch;
+</script>
 </body>
 
 </html>
