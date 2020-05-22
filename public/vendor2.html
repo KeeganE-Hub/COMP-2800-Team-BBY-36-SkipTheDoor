@@ -180,6 +180,15 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class="col">
+                <a href="./vendor2.html" class="btn btn-unique btn-md">
+                  Update Products Individually
+                  <i class="fas fa-graduation-cap ml-2"></i>
+                </a>
+              </div>
+            </div>
+
             <div id="update" class="row">
               <div class="col">
                 <button onClick="updateInfo()" class="btn btn-unique btn-md">
@@ -438,7 +447,7 @@
             [columnTitle]: result.values[row][col] + ""
           }, {
             merge: true
-          });
+          }); 
         }
       }
 
@@ -451,8 +460,7 @@
             Description: result.values[row][1] + "",
             Price: result.values[row][2] + "",
             Quantity: result.values[row][3] + "",
-            Location: result.values[row][4] + "",
-            Image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/colorful-of-dahlia-pink-flower-in-beautiful-garden-royalty-free-image-825886130-1554743243.jpg?crop=0.669xw:1.00xh;0.331xw,0&resize=640:*3"
+            Location: result.values[row][4] + ""
           });
       }
     }
