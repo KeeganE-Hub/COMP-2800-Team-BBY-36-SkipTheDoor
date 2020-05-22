@@ -265,7 +265,7 @@
       
       // img.setAttribute("src", "./img/dummy.jpg");
       img.setAttribute("src", doc.data().Image);
-      if (doc.data().Image.length == 0 || doc.data().Image == "123") {
+      if (!doc.data().Image) {
         img.setAttribute("src", "./img/dummy.jpg");
       };
       img.style.width = "23em";
@@ -312,6 +312,8 @@
         renderProducts(doc);
       })
     });
+
+    console.log(localStorage.getItem("homeSearch"));
 
     function search() {
       // Clear previous results

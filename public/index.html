@@ -539,6 +539,7 @@
 
 <script>
   function goSearch() {
+  myStorage = window.localStorage;
   localStorage.setItem("homeSearch", document.getElementById("searchBar").value);
   console.log(localStorage.getItem("homeSearch"));
 }

@@ -239,8 +239,8 @@
       let price = document.createElement("p");
       let pricestockcol2 = document.createElement("div");
       let stock = document.createElement("p");
-      let addbutton = document.createElement("button");
-      let buttonicon = document.createElement("i");
+      // let addbutton = document.createElement("button");
+      // let buttonicon = document.createElement("i");
       let linebreak = document.createElement("hr");
 
       mainrow.classList.add("row", "wow", "fadeIn");
@@ -257,22 +257,32 @@
       price.classList.add("font-weight-bold");
       pricestockcol2.classList.add("col");
       stock.classList.add("text-right", "pr-2");
-      addbutton.classList.add("btn-block", "btn-unique", "btn-lg");
-      buttonicon.classList.add("fas", "fa-cart-plus", "ml-2");
+      // addbutton.classList.add("btn-block", "btn-unique", "btn-lg");
+      // buttonicon.classList.add("fas", "fa-cart-plus", "ml-2");
 
       mainrow.setAttribute("data-id", doc.id);
       
-      img.setAttribute("src", "./img/dummy.jpg");
-      img.setAttribute("alt", "productimg");
+      // img.setAttribute("src", "./img/dummy.jpg");
+      img.setAttribute("src", doc.data().Image);
+      if (!doc.data().Image) {
+        img.setAttribute("src", "./img/dummy.jpg");
+      };
+      img.style.width = "23em";
+      img.style.height = "23em";
       nameanchor.setAttribute("href", "/product.html");
-      addbutton.setAttribute("type", "button");
+      // addbutton.setAttribute("type", "button");
 
-      nametag.textContent = doc.data().Product;
-      location.textContent = doc.data().Location;
+      nametag.textContent = doc.data().Location;
+      // nametag.textContent = doc.data().Product;
+      // location.textContent = doc.data().Location;
+      location.textContent = doc.data().Product;
       description.textContent = doc.data().Description;
       price.textContent = doc.data().Price;
-      stock.textContent = "Currently in stock";
-      addbutton.textContent = "Add to Cart";
+      if (doc.data().Quantity > 0) {
+        stock.textContent = "Currently in stock";
+      } else {
+        stock.textContent = "Out of stock";
+      };
 
       mainrow.appendChild(imgcol);
       imgcol.appendChild(imgcontainer);
@@ -288,21 +298,45 @@
       pricestockcol1.appendChild(price);
       pricestockrow.appendChild(pricestockcol2);
       pricestockcol2.appendChild(stock);
-      desccol.appendChild(addbutton);
-      addbutton.appendChild(buttonicon);
+      // desccol.appendChild(addbutton);
+      // addbutton.appendChild(buttonicon);
 
       productlist.appendChild(mainrow);
       productlist.appendChild(linebreak);
     }
 
-    //Lists all products.
-    // db.collection("users").doc("charliewei2").collection("products").get().then((snapshot) => {
-    //   snapshot.docs.forEach(doc => {
-    //     renderProducts(doc);
-    //   })
-    // });
-    console.log(localStorage.getItem("homeSearch"));
+    if (localStorage.getItem("homeSearch") == "") {
 
+    //Lists all products.
+    db.collection("market").get().then((snapshot) => {
+      snapshot.docs.forEach(doc => {
+        renderProducts(doc);
+      })
+    });
+
+    } else {
+      let search = localStorage.getItem("homeSearch");
+            // Tidy user input
+            search = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase();
+
+      //Declare query area
+      var proRef = db.collection("market");
+
+      // Search (description)
+      var query = proRef.where("Product", "==", search)
+            .get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                  renderProducts(doc);
+                    // doc.data() is never undefined for query doc snapshots
+                });
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+
+      localStorage.getItem("homeSearch") == "";
+    }
 
     function search() {
       // Clear previous results
@@ -311,56 +345,30 @@
       let search = document.getElementById("searcher").value;
 
       // Easter egg
-      if (search == "sdrawkcaB") {
-        window.location.pathname = 'public/sdrawkcaB.html';
+      if (search == "Backwards") {
+        window.location.pathname = './store.html';
       } else {
       // Tidy user input
       search = search.charAt(0).toUpperCase() + search.slice(1).toLowerCase();
-      //Declare query area
-      var proRef = db.collection("users").doc("charliewei").collection("products");
 
-      // Search (array)
-      var query = proRef.where("Products", "array-contains", search)
+    //Declare query area
+    var proRef = db.collection("market");
+    
+    // Search (description)
+    var query = proRef.where("Product", "==", search)
           .get()
-                .then(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
-                      renderProducts(doc);
-                        // doc.data() is never undefined for query doc snapshots
-                    });
-                })
-                .catch(function(error) {
-                    console.log("Error getting documents: ", error);
-                });
-              }
-      }
-
-      // // Search (description)
-      // var query = proRef.where("Description", "==", search)
-      //       .get()
-      //       .then(function(querySnapshot) {
-      //           querySnapshot.forEach(function(doc) {
-      //             renderProducts(doc);
-      //               // doc.data() is never undefined for query doc snapshots
-      //               console.log(doc.id);
-      //               console.log(doc.data()["Price"]);
-      //           });
-      //       })
-      //       .catch(function(error) {
-      //           console.log("Error getting documents: ", error);
-      //       });
-      //     }
-
-    document.getElementById("submit").onclick = search;
-
-    db.collection("users").get().then((snapshot) => {
-      snapshot.docs.forEach(doc => {
-        db.collection("users").doc(doc.id).collection("products").get().then((snapshot) => {
-          snapshot.docs.forEach(doc => {
-            renderProducts(doc);
+          .then(function(querySnapshot) {
+              querySnapshot.forEach(function(doc) {
+                renderProducts(doc);
+                  // doc.data() is never undefined for query doc snapshots
+              });
           })
-        })
-      })
-    });
+          .catch(function(error) {
+              console.log("Error getting documents: ", error);
+          });
+
+            }
+    }
 
   </script>
 
