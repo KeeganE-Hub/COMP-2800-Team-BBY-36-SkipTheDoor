@@ -155,8 +155,8 @@
               </p>
 
               <form action="store.html" class="form-inline mr-auto">
-                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
-                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick" href="./store.html">Search</button>
               </form>
             </div>
             <!-- Content -->
@@ -187,8 +187,8 @@
               </p>
 
               <form action="store.html" class="form-inline mr-auto">
-                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
-                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick" href="./store.html">Search</button>
               </form>
             </div>
             <!-- Content -->
@@ -219,8 +219,8 @@
               </p>
 
               <form action="store.html" class="form-inline mr-auto">
-                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" aria-label="Search">
-                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="What do you want buy?" id="searchBar">
+                <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit" id="searchClick" href="./store.html">Search</button>
               </form>
             </div>
             <!-- Content -->
@@ -537,6 +537,15 @@
     new WOW().init();
   </script>
 
+<script>
+  function goSearch() {
+  localStorage.setItem("homeSearch", document.getElementById("searchBar").value);
+  console.log(localStorage.getItem("homeSearch"));
+}
+
+
+document.getElementById("searchClick").onclick = goSearch;
+</script>
 </body>
 
 </html>
